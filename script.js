@@ -1,4 +1,5 @@
 // Query selectors
+const body = document.body;
 const searchBar = document.querySelector("input");
 const gif = document.querySelector("img");
 const searchButton = document.querySelector("a");
@@ -6,7 +7,7 @@ const searchButton = document.querySelector("a");
 // Global variables
 let searchURL =
   "https://api.giphy.com/v1/gifs/translate?api_key=blZBBX96YFZI1VZ6wLWPZn0JcZSDCP1x&s=rabbit";
-let searchTerm;
+let searchTerm = "rabbit";
 
 // Get gif from api
 fetch(searchURL, { mode: "cors" })
@@ -21,7 +22,7 @@ async function gifFetcher() {
   const response = await fetch(searchURL, { mode: "cors" });
   const obj = await response.json();
 
-  gif.src = obj.data.images.fixed_width.url;
+  gif.src = obj.data.images.original.url;
 }
 
 // Event listeners
@@ -37,7 +38,7 @@ searchBar.addEventListener("input", (e) => {
   searchButton.textContent = `GIVE ME ${searchTerm.toUpperCase()}`;
 });
 
-searchBar.addEventListener("keyup", (e) => {
+body.addEventListener("keyup", (e) => {
   if (e.key === "Enter") {
     gifFetcher();
     searchButton.textContent = `GIVE ME ANOTHER ${searchTerm.toUpperCase()}`;
