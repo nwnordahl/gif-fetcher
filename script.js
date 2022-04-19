@@ -8,6 +8,8 @@ const searchButton = document.querySelector("a");
 let searchURL =
   "https://api.giphy.com/v1/gifs/translate?api_key=blZBBX96YFZI1VZ6wLWPZn0JcZSDCP1x&s=rabbit";
 let searchTerm = "rabbit";
+const disabledButtonColor = "#757575";
+const activeButtonColor = "#89023e";
 
 // Get gif from api
 fetch(searchURL, { mode: "cors" })
@@ -17,7 +19,7 @@ fetch(searchURL, { mode: "cors" })
   })
   .catch((error) => console.log(error));
 
-// Alternatively you can call this function, does the same as above
+// This function does the same as above, but in a slightly different way
 async function gifFetcher() {
   const response = await fetch(searchURL, { mode: "cors" });
   const obj = await response.json();
@@ -30,22 +32,28 @@ searchBar.addEventListener("input", (e) => {
   searchTerm = e.target.value.trim();
 
   if (searchTerm === "") {
-    searchButton.textContent = "GIVE ME ";
-    return;
-  }
+    searchButton.textContent = "NO SEARCH TERM :(";
+    searchButton.style.backgroundColor = disabledButtonColor;
+    searchButton.classList.remove("hover-on");
+    searchButton.style.pointerEvents = "none";
+  } else {
+    searchURL = `https://api.giphy.com/v1/gifs/translate?api_key=blZBBX96YFZI1VZ6wLWPZn0JcZSDCP1x&s=${searchTerm}`;
 
-  searchURL = `https://api.giphy.com/v1/gifs/translate?api_key=blZBBX96YFZI1VZ6wLWPZn0JcZSDCP1x&s=${searchTerm}`;
-  searchButton.textContent = `GIVE ME ${searchTerm.toUpperCase()}`;
+    searchButton.innerHTML = `GIVE ME A <br /> "${searchTerm.toUpperCase()}" GIF`;
+    searchButton.style.backgroundColor = activeButtonColor;
+    searchButton.classList.add("hover-on");
+    searchButton.style.pointerEvents = "auto";
+  }
 });
 
 body.addEventListener("keyup", (e) => {
   if (e.key === "Enter") {
     gifFetcher();
-    searchButton.textContent = `GIVE ME ANOTHER ${searchTerm.toUpperCase()}`;
+    searchButton.innerHTML = `GIVE ME ANOTHER <br /> "${searchTerm.toUpperCase()}" GIF`;
   }
 });
 
 searchButton.addEventListener("click", (e) => {
   gifFetcher();
-  searchButton.textContent = `GIVE ME ANOTHER ${searchTerm.toUpperCase()}`;
+  searchButton.innerHTML = `GIVE ME ANOTHER <br /> "${searchTerm.toUpperCase()}" GIF`;
 });

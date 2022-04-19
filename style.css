@@ -1,3 +1,4 @@
+/* Global styling */
 * {
   margin: 0;
   padding: 0;
@@ -21,34 +22,7 @@ body {
   height: 100vh;
 }
 
-a {
-  width: 320px;
-  text-align: center;
-  text-decoration: none;
-  font-size: 20px;
-  font-weight: bold;
-  padding: 15px 20px;
-  background-color: var(--button-color);
-  color: var(--text-color);
-  border-radius: 12px;
-}
-
-a:hover,
-a:focus {
-  background-color: var(--button-hover-color);
-  transform: scale(1.02);
-}
-
-a:focus {
-  outline: none;
-}
-
-img {
-  border-radius: 5px;
-  height: auto;
-  width: 320px;
-}
-
+/* Search bar */
 input {
   padding: 5px 10px;
   background-color: var(--text-color);
@@ -68,5 +42,34 @@ input:focus {
 }
 
 input:focus {
+  outline: none;
+}
+
+/* Gif */
+img {
+  border-radius: 5px;
+  height: auto;
+  width: 320px;
+}
+
+/* Search button */
+a {
+  width: 320px;
+  text-align: center;
+  text-decoration: none;
+  font-size: 20px;
+  font-weight: bold;
+  padding: 15px 20px;
+  background-color: var(--button-color);
+  color: var(--text-color);
+  border-radius: 12px;
+}
+
+a.hover-on:hover {
+  background-color: var(--button-hover-color) !important;
+  transform: scale(1.02);
+}
+
+a:focus {
   outline: none;
 }
