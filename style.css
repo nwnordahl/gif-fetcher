@@ -1,3 +1,9 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 :root {
   --background-color: #ea638c;
   --button-color: #89023e;
@@ -27,13 +33,35 @@ a {
   border-radius: 12px;
 }
 
-a:hover {
+a:hover,
+a:focus {
   background-color: var(--button-hover-color);
   transform: scale(1.02);
+}
+
+a:focus {
+  outline: none;
 }
 
 img {
   border-radius: 5px;
   height: auto;
   width: 320px;
+}
+
+input {
+  padding: 5px 10px;
+  background-color: var(--text-color);
+  color: var(--button-color);
+  font-family: inherit;
+  font-size: 24px;
+  font-weight: bold;
+  text-align: center;
+  width: 320px;
+  border-radius: 12px;
+  border: 0;
+}
+
+input:focus {
+  outline: none;
 }
