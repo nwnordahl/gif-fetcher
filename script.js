@@ -8,7 +8,8 @@ fetch(
   .then((response) => response.json())
   .then((obj) => {
     img.src = obj.data.images.original.url;
-  });
+  })
+  .catch((error) => console.log(error));
 
 // Alternatively you can call this function, does the same as above
 async function gifFetcher() {
